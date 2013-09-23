@@ -7,7 +7,7 @@ def randomize people
     people.sample
 end
 
-hello = ""
+input = ""
 
 while (true)
     person = randomize(@people)
@@ -15,5 +15,5 @@ while (true)
     @people.delete(person)
     p @people
     `say "It is #{person}'s turn."`
-    hello = gets
+    input = gets
 end
