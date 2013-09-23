@@ -1,4 +1,4 @@
-puts "Welcome to randobot 6000"
+puts "Welcome to randobot 7000"
 #@people = (1...7).to_a
 #
 class Randobot
@@ -23,11 +23,15 @@ class Randobot
     end
 end
 
-user_input = ""
+def pressed_quit user_input
+    user_input.include? 'q'
+end
 
 randobot = Randobot.new
 
-while (!user_input.include? 'q')
+user_input = ''
+
+while (!pressed_quit user_input)
     person = randobot.next_person
     puts person
     `say "It is #{person}'s turn."`
