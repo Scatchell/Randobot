@@ -3,7 +3,7 @@ puts "Welcome to randobot 7000"
 #
 class Randobot
     def initialize
-        @default_list = [:Remo, :Neil, :Godwin]
+        @default_list = [:Neil, :Godwin]
         @people = original_list
     end
 
