@@ -1,9 +1,9 @@
+#!/Users/ThoughtWorks/.rvm/rubies/ruby-2.0.0-p451/bin/ruby
 puts "Welcome to randobot 7000"
-#@people = (1...7).to_a
-#
+
 class Randobot
     def initialize
-        @default_list = [:Jafari, :Ann]
+        @default_list = [:Leeza, :Musa, :Kuana, :Jonah, :Raymond, :Tsepo, :Deon, :Tsatsi]
         @people = original_list
     end
 
@@ -20,10 +20,6 @@ class Randobot
         end
 
         person
-    end
-
-    def add_person name
-        @default_list.push name
     end
 end
 
