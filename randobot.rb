@@ -3,7 +3,7 @@ puts "Welcome to randobot 7000"
 
 class Randobot
   def initialize
-    @default_list = [:kavita, :jenny, :arpitha, :rebeca, :claud, :bonnie]
+    @default_list = [:astrid, :blair, :bonnie, :george, :humberto, :ian,  :paul, :reece, :richard, :ross, :rushil, :anthony]
     @people = original_list
   end
 
@@ -21,6 +21,15 @@ class Randobot
 
     person
   end
+
+  def save
+    File.open("./persons.txt", "w") do |file|
+      @people.each do |person|
+        file.puts person
+      end
+    end
+  end
+
 end
 
 def pressed_quit user_input
@@ -33,7 +42,11 @@ user_input = ''
 
 while (!pressed_quit user_input)
   person = randobot.next_person
-  puts person
-  `say "#{person}"`
+  secondPerson = randobot.next_person
+  personStatement = person.to_s + ' and ' + secondPerson.to_s
+  puts personStatement
+  `say "#{personStatement}"`
   user_input = gets
 end
+
+randobot.save
