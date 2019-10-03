@@ -1,4 +1,4 @@
-#!/Users/ascatche/.rvm/rubies/ruby-2.1.2/bin/ruby
+#!/usr/bin/env ruby
 puts "Welcome to randobot 7000"
 
 class Randobot
