@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+require 'HTTParty' 
+require 'json'
 puts "Welcome to randobot 7000"
 
 class Randobot
@@ -56,13 +58,18 @@ randobot.load_last_known_people
 while (!pressed_quit user_input)
   person = randobot.next_person
   secondPerson = randobot.next_person
-  personStatement = 'And the prize goes to......' + person.to_s + ' and ' + secondPerson.to_s
-
+  personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
-
-  user_input = gets
+  request_body = '{ text : "' + personStatement + '" }'
 end
 
 randobot.save
+
+uri = 'the best uri'  
+
+headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
+options = {:body => request_body, :headers => headers}
+
+res = HTTParty.post(uri, options)
