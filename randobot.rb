@@ -7,7 +7,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:astrid, :blair, :kurtis, :kadir, :humberto, :ian,  :paul, :reece, :richard, :ross, :rushil, :anthony, :jade]
+    @default_list = [:astrid, :blair, :kurtis, :kadir, :humberto, :paul, :richard, :ross, :rushil, :anthony, :jade, :ali, :danni, :masha, :ram]
     p load_last_known_people
     if !load_last_known_people.empty?
       @people = load_last_known_people.clone
@@ -55,21 +55,21 @@ user_input = ''
 
 randobot.load_last_known_people
 
-person = randobot.next_person
-secondPerson = randobot.next_person
-personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
-request_body = '{ text : "' + personStatement + '" }'
-uri = 'the best uri'
-
-headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
-options = {:body => request_body,
-:headers => headers}
-
-res = HTTParty.post(uri, options)
-puts res
-
-puts personStatement
-puts "remaining: " + randobot.people.to_s
-`say "#{personStatement}"`
+while (!pressed_quit user_input)
+  person = randobot.next_person
+  secondPerson = randobot.next_person
+  personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
+  puts personStatement
+  puts "remaining: " + randobot.people.to_s
+  `say "#{personStatement}"`
+  request_body = '{ text : "' + personStatement + '" }'
+end
 
 randobot.save
+
+uri = 'the best uri'  
+
+headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
+options = {:body => request_body, :headers => headers}
+
+res = HTTParty.post(uri, options)
