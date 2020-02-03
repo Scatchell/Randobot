@@ -62,14 +62,20 @@ while (!pressed_quit user_input)
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
-  request_body = '{ text : "' + personStatement + '" }'
+  user_input = gets
 end
 
 randobot.save
 
-uri = 'the best uri'  
+def results_to_chat
+  uri = ENV['GCHAT_URI']
 
-headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
-options = {:body => request_body, :headers => headers}
+  headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
 
-res = HTTParty.post(uri, options)
+  request_body = '{ text : "' + personStatement + '" }'
+  options = {:body => request_body, :headers => headers}
+
+  res = HTTParty.post(uri, options)
+end
+
+results_to_chat

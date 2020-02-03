@@ -1,2 +1,5 @@
 *.doc
 *.iml
+.envrc
+.ruby-gemset
+.ruby-version
