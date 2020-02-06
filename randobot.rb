@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 require 'HTTParty' 
 require 'json'
 puts "Welcome to randobot 7000"
@@ -7,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:astrid, :blair, :kurtis, :kadir, :humberto, :paul, :richard, :ross, :rushil, :anthony, :jade, :ali, :danni, :masha, :ram]
+    @default_list = [:astrid, :blair, :kurtis, :kadir, :humberto, :paul, :richard, :ross, :rushil, :anthony, :jade, :ali, :danni, :masha, :ram, :syed]
     p load_last_known_people
     if !load_last_known_people.empty?
       @people = load_last_known_people.clone
@@ -55,6 +56,7 @@ user_input = ''
 
 randobot.load_last_known_people
 
+
 while (!pressed_quit user_input)
   person = randobot.next_person
   secondPerson = randobot.next_person
@@ -67,7 +69,7 @@ end
 
 randobot.save
 
-def results_to_chat
+def results_to_chat personStatement
   uri = ENV['GCHAT_URI']
 
   headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
@@ -78,4 +80,4 @@ def results_to_chat
   res = HTTParty.post(uri, options)
 end
 
-results_to_chat
+results_to_chat personStatement
