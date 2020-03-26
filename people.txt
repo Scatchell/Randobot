@@ -1,9 +1,6 @@
 astrid
 blair
 kurtis
-kadir
-humberto
-paul
 ross
 rushil
 anthony
@@ -11,5 +8,4 @@ jade
 ali
 danni
 masha
-ram
 syed
