@@ -2,7 +2,7 @@
 
 ## Initial setup
 
-Version of ruby this script has been tested on is: ruby 2.3.0p0
+Version of ruby this script has been tested on is: ruby 2.7.0
 
 Install required dependencies with:
 
