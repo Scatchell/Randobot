@@ -1,8 +1,5 @@
-astrid
 blair
-kurtis
 paul
-richard
 rushil
 anthony
 jade
@@ -11,6 +8,6 @@ danni
 masha
 ram
 syed
-caius
+cayus
 mario
-karan
+gareth
