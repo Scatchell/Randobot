@@ -8,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:astrid, :blair, :kurtis, :paul, :richard, :rushil, :anthony, :jade, :ali, :danni, :masha, :ram, :syed, :cayus, :mario, :karan, :gareth]
+    @default_list = [:astrid, :blair, :kurtis, :paul, :richard, :rushil, :anthony, :jade, :ali, :danni, :masha, :ram, :syed, :cayus, :mario, :karan, :gareth, :daley]
     p load_last_known_people
     if load_last_known_people.empty?
       @people = @default_list.clone
@@ -55,7 +55,6 @@ randobot = Randobot.new
 user_input = ''
 
 randobot.load_last_known_people
-
 
 while (!pressed_quit user_input)
   person = randobot.next_person
