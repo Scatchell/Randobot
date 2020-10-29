@@ -4,6 +4,4 @@ masha
 ram
 syed
 cayus
-mario
-karan
 daley
