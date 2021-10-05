@@ -56,10 +56,20 @@ user_input = ''
 
 randobot.load_last_known_people
 
-while (!pressed_quit user_input)
+def single_person randobot
+  person = randobot.next_person
+  personStatement = "And the winner is......" + person.to_s
+end
+
+def two_people randobot
   person = randobot.next_person
   secondPerson = randobot.next_person
   personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
+end
+
+
+while (!pressed_quit user_input)
+  personStatement = single_person randobot
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
