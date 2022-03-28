@@ -8,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:astrid, :blair, :kurtis, :paul, :richard, :rushil, :anthony, :ali, :danni, :masha, :ram, :syed, :cayus, :mario, :karan, :gareth, :daley, :rory]
+    @default_list = [:juan, :catrinel, :charley, :daniel, :paula, :susan, :eduardo, :anthony, :mark, :joel]
     p load_last_known_people
     if load_last_known_people.empty?
       @people = @default_list.clone
@@ -69,7 +69,7 @@ end
 
 
 while (!pressed_quit user_input)
-  personStatement = single_person randobot
+  personStatement = two_people randobot
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
@@ -86,7 +86,7 @@ def results_to_chat personStatement
   request_body = '{ text : "' + personStatement + '" }'
   options = {:body => request_body, :headers => headers}
 
-  res = HTTParty.post(uri, options)
+  # res = HTTParty.post(uri, options)
 end
 
 results_to_chat personStatement
