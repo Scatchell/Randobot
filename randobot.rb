@@ -67,6 +67,24 @@ def two_people randobot
   personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
 end
 
+def results_to_chat personStatement
+  uri = ENV['GCHAT_URI']
+
+  headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
+
+  request_body = '{ text : "' + personStatement + '" }'
+  options = {:body => request_body, :headers => headers}
+
+  res = HTTParty.post(uri, options)
+end
+
+def save_selected_people people_selected
+  File.open("./people-last-selected.txt", "w") do |file|
+    file.puts people_selected
+  end
+end
+
+
 
 while (!pressed_quit user_input)
   personStatement = two_people randobot
@@ -77,16 +95,5 @@ while (!pressed_quit user_input)
 end
 
 randobot.save
-
-def results_to_chat personStatement
-  uri = ENV['GCHAT_URI']
-
-  headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
-
-  request_body = '{ text : "' + personStatement + '" }'
-  options = {:body => request_body, :headers => headers}
-
-  # res = HTTParty.post(uri, options)
-end
-
-results_to_chat personStatement
+save_selected_people personStatement
+# results_to_chat personStatement
