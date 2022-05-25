@@ -8,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:juan, :catrinel, :charley, :daniel, :paula, :susan, :eduardo, :anthony, :mark, :joel]
+    @default_list = [:catrinel, :charley, :paula, :eduardo, :anthony, :mark, :joel, :pow, :douglas, :jose]
     p load_last_known_people
     if load_last_known_people.empty?
       @people = @default_list.clone
