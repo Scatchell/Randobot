@@ -2,13 +2,16 @@
 
 require 'HTTParty' 
 require 'json'
-puts "Welcome to randobot 7000"
+
 
 class Randobot
   attr_reader :people
 
-  def initialize
+  def initialize people_file, num_of_people
     @default_list = [:catrinel, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
+    @people_file = people_file
+    @num_of_people = num_of_people
+
     p load_last_known_people
     if load_last_known_people.empty?
       @people = @default_list.clone
@@ -38,7 +41,7 @@ class Randobot
 
   def load_last_known_people
     people = []
-    File.open("./people.txt", "r").each do |line|
+    File.open(@people_file, "r").each do |line|
       people.push line.strip
     end
 
@@ -50,7 +53,18 @@ def pressed_quit user_input
   user_input.include? 'q'
 end
 
-randobot = Randobot.new
+if ARGV.length < 2
+  puts "Too few arguments, please add a people txt file and a number of people to select"
+  puts "e.g. ./randobot.rb people.txt 2"
+  exit
+end
+
+people_file = ARGV[0]
+num_of_people = ARGV[1].to_i
+
+puts "Welcome to randobot 9000"
+
+randobot = Randobot.new(people_file, num_of_people)
 
 user_input = ''
 
