@@ -4,6 +4,5 @@ eduardo
 anthony
 mark
 joel
-pow
 douglas
-jose
+david

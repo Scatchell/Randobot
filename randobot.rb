@@ -8,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize
-    @default_list = [:catrinel, :charley, :paula, :eduardo, :anthony, :mark, :joel, :pow, :douglas, :jose]
+    @default_list = [:catrinel, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
     p load_last_known_people
     if load_last_known_people.empty?
       @people = @default_list.clone
@@ -87,7 +87,7 @@ end
 
 
 while (!pressed_quit user_input)
-  personStatement = two_people randobot
+  personStatement = single_person randobot
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
