@@ -7,10 +7,9 @@ require 'json'
 class Randobot
   attr_reader :people
 
-  def initialize people_file, num_of_people
+  def initialize people_file
     @default_list = [:catrinel, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
     @people_file = people_file
-    @num_of_people = num_of_people
 
     p load_last_known_people
     if load_last_known_people.empty?
@@ -64,7 +63,7 @@ num_of_people = ARGV[1].to_i
 
 puts "Welcome to randobot 9000"
 
-randobot = Randobot.new(people_file, num_of_people)
+randobot = Randobot.new(people_file)
 
 user_input = ''
 
@@ -98,14 +97,17 @@ def save_selected_people people_selected
   end
 end
 
-
-
 while (!pressed_quit user_input)
-  personStatement = single_person randobot
+  if num_of_people == 2
+    personStatement = two_people randobot
+  else
+    personStatement = single_person randobot
+  end
+
   puts personStatement
   puts "remaining: " + randobot.people.to_s
   `say "#{personStatement}"`
-  user_input = gets
+  user_input = STDIN.gets
 end
 
 randobot.save
