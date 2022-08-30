@@ -58,12 +58,12 @@ if ARGV.length < 2
   exit
 end
 
-people_file = ARGV[0]
+$people_file = ARGV[0]
 num_of_people = ARGV[1].to_i
 
 puts "Welcome to randobot 9000"
 
-randobot = Randobot.new(people_file)
+randobot = Randobot.new($people_file)
 
 user_input = ''
 
@@ -92,7 +92,7 @@ def results_to_chat personStatement
 end
 
 def save_selected_people people_selected
-  File.open("./people-last-selected.txt", "w") do |file|
+  File.open("./people-last-selected-" + $people_file.gsub(/\\\//, "") + ".txt", "w") do |file|
     file.puts people_selected
   end
 end
