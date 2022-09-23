@@ -69,15 +69,16 @@ user_input = ''
 
 randobot.load_last_known_people
 
-def single_person randobot
-  person = randobot.next_person
-  personStatement = "And the winner is......" + person.to_s
-end
 
-def two_people randobot
-  person = randobot.next_person
-  secondPerson = randobot.next_person
-  personStatement = "And the winner is......" + person.to_s + " and " + secondPerson.to_s
+def person_statement_for people
+  personStatement = ''
+  if people.length == 2
+    personStatement = "And the winner is......" + people.first.to_s + " and " + people[1].to_s
+  else
+    personStatement = "And the winner is......" + people.first.to_s
+  end
+
+  personStatement
 end
 
 def results_to_chat personStatement
@@ -92,17 +93,21 @@ def results_to_chat personStatement
 end
 
 def save_selected_people people_selected
-  File.open("./people-last-selected-" + $people_file.gsub(/\\\//, "") + ".txt", "w") do |file|
-    file.puts people_selected
+  File.open("./people-last-selected-" + $people_file.gsub(/\\\//, ""), "w") do |file|
+    people_selected.each do |person|
+      file.puts person
+    end
   end
 end
 
 while (!pressed_quit user_input)
   if num_of_people == 2
-    personStatement = two_people randobot
+    people = [randobot.next_person, randobot.next_person]
   else
-    personStatement = single_person randobot
+    people = [randobot.next_person]
   end
+
+  personStatement = person_statement_for people
 
   puts personStatement
   puts "remaining: " + randobot.people.to_s
@@ -111,5 +116,5 @@ while (!pressed_quit user_input)
 end
 
 randobot.save
-save_selected_people personStatement
+save_selected_people people
 # results_to_chat personStatement
