@@ -8,7 +8,7 @@ class Randobot
   attr_reader :people
 
   def initialize people_file
-    @default_list = [:catrinel, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
+    @default_list = [:sara, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
     @people_file = people_file
 
     p load_last_known_people
