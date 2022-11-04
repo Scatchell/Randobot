@@ -11,11 +11,11 @@ class Randobot
     @default_list = [:sara, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
     @people_file = people_file
 
-    p load_last_known_people
-    if load_last_known_people.empty?
+    last_known_people = load_last_known_people
+    if last_known_people.empty?
       @people = @default_list.clone
     else
-      @people = load_last_known_people.clone
+      @people = last_known_people.clone
     end
   end
 
@@ -31,7 +31,7 @@ class Randobot
   end
 
   def save
-    File.open("./people.txt", "w") do |file|
+    File.open(@people_file, "w") do |file|
       @people.each do |person|
         file.puts person
       end
