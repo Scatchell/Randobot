@@ -7,7 +7,7 @@ require 'json'
 class Randobot
   attr_reader :people
 
-  def initialize people_file
+  def initialize(people_file)
     @default_list = [:sara, :paula, :eduardo, :anthony, :joel, :pow, :douglas, :jose, :david, :sharath]
     @people_file = people_file
 
@@ -23,7 +23,7 @@ class Randobot
     person = @people.sample
     @people.delete(person)
 
-    if (@people.size == 0)
+    if @people.size == 0
       @people = @default_list.clone
     end
 
@@ -48,7 +48,7 @@ class Randobot
   end
 end
 
-def pressed_quit user_input
+def pressed_quit(user_input)
   user_input.include? 'q'
 end
 
@@ -70,29 +70,28 @@ user_input = ''
 randobot.load_last_known_people
 
 
-def person_statement_for people
-  personStatement = ''
+def person_statement_for(people)
   if people.length == 2
-    personStatement = "And the winner is......" + people.first.to_s + " and " + people[1].to_s
+    person_statement = "And the winner is......" + people.first.to_s + " and " + people[1].to_s
   else
-    personStatement = "And the winner is......" + people.first.to_s
+    person_statement = "And the winner is......" + people.first.to_s
   end
 
-  personStatement
+  person_statement
 end
 
-def results_to_chat personStatement
+def results_to_chat(person_statement)
   uri = ENV['GCHAT_URI']
 
   headers = { 'Content-Type' => 'application/json; charset=UTF-8' }
 
-  request_body = '{ text : "' + personStatement + '" }'
-  options = {:body => request_body, :headers => headers}
+  request_body = '{ text : "' + person_statement + '" }'
+  options = { :body => request_body, :headers => headers }
 
   res = HTTParty.post(uri, options)
 end
 
-def save_selected_people people_selected
+def save_selected_people(people_selected)
   File.open("./people-last-selected-" + $people_file.gsub(/\\\//, ""), "w") do |file|
     people_selected.each do |person|
       file.puts person
@@ -100,18 +99,19 @@ def save_selected_people people_selected
   end
 end
 
-while (!pressed_quit user_input)
+people = []
+until pressed_quit user_input
   if num_of_people == 2
     people = [randobot.next_person, randobot.next_person]
   else
     people = [randobot.next_person]
   end
 
-  personStatement = person_statement_for people
+  person_statement = person_statement_for people
 
-  puts personStatement
+  puts person_statement
   puts "remaining: " + randobot.people.to_s
-  `say "#{personStatement}"`
+  `say "#{person_statement}"`
   user_input = STDIN.gets
 end
 
